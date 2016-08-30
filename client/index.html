@@ -9,8 +9,8 @@
       <div class="container" ng-controller="BackPackFinderCtrl">
         <h2>League of Legends</h2>
         <h3>Backpack-Finder version 0.1</h3>
-        <input class="leagueName" name="leagueName" placeholder="Enter a friend's username here..."/>
-        <button class="addUser"/>
+        <input class="leagueName" ng-model="leagueName" placeholder="Enter username here..."/>
+        <button class="addUser" ng-click="searchData(leagueName)">Look ^</button>
         <table class="table">
               <thead>
                 <tr>
@@ -25,7 +25,7 @@
                   <td>{{playerName}}</td>
                   <td>{{wins}}</td>
                   <td>{{losses}}</td>
-                  <td>{{((wins / 10) * 100) + '%'}}</td>
+                  <td>{{wins !== undefined ? ((wins / 10) * 100) + '%' : ""}}</td>
               </tbody>
       </div>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>

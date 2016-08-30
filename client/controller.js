@@ -4,21 +4,28 @@ BackpackFinder.controller('BackPackFinderCtrl', [
   '$scope',
   '$http',
   function($scope, $http) {
-    $http.get('/show').success(function(gameData) {
-      // $scope.gameData = gameData;
-      console.log(gameData);
-      // $scope.playerName = "testyTheMcTester";
-      // $scope.wins = 0;
-      // $scope.losses = 0;
-      // for(var i = 0; i < $scope.gameData.length; i++) {
-      //   if($scope.gameData[i].stats.win) {
-      //     $scope.wins++;
-      //   } else {
-      //     $scope.losses++;
-      //   }
-      // }
-    });
-    // $scope.greetings = [{greet: 'yo'}, {greet: 'hi'}, {greet: 'hey man'}];
+    $scope.searchData = function(name) {
+      console.log(name);
+      if (name !== "") {
+        $http.post('/show', name).success(function() {
+          $http.get('/show').success(function(gameData) {
+            // $scope.gameData = gameData;
+            console.log(gameData);
+            // $scope.playerName = "testyTheMcTester";
+            // $scope.wins = 0;
+            // $scope.losses = 0;
+            // for(var i = 0; i < $scope.gameData.length; i++) {
+            //   if($scope.gameData[i].stats.win) {
+            //     $scope.wins++;
+            //   } else {
+            //     $scope.losses++;
+            //   }
+            // }
+          });
+        });
+        $scope.leagueName = "";
+      }
+    };
   }]);
 
 
