@@ -1,34 +1,57 @@
 var BackpackFinder = angular.module('BackpackFinder', []);
 
+// angular.module('BackpackFinder.utils', [])
+
+// .factory('Utils', function ($http) {
+//   return {
+//     lookUp: function (data) {
+//       return $http({
+//         method: 'POST',
+//         url: '/show',
+//         data: data
+//       })
+//       .then(function (response) {
+//         return response;
+//       });
+//     }
+//   };
+// })
+
 BackpackFinder.controller('BackPackFinderCtrl', [
   '$scope',
   '$http',
   function($scope, $http) {
     $scope.searchData = function(name) {
-      console.log(name);
-      if (name !== "") {
-        $http.post('/show', name).success(function() {
-          $http.get('/show').success(function(gameData) {
-            // $scope.gameData = gameData;
-            console.log(gameData);
-            // $scope.playerName = "testyTheMcTester";
-            // $scope.wins = 0;
-            // $scope.losses = 0;
-            // for(var i = 0; i < $scope.gameData.length; i++) {
-            //   if($scope.gameData[i].stats.win) {
-            //     $scope.wins++;
-            //   } else {
-            //     $scope.losses++;
-            //   }
-            // }
-          });
-        });
-        $scope.leagueName = "";
-      }
-    };
+      $scope.playerName = name;
+      $http({
+        method: 'POST',
+        url: '/show',
+        params: {name: name}
+      }).success(function(gameData) {
+        console.log('gameData: ', gameData);
+        $scope.gameData = gameData;
+
+      });
+
+        // $http.post('/show', name).success(function() {
+        //   $http.get('/show').success(function(gameData) {
+        //     // $scope.gameData = gameData;
+        //     console.log(gameData);
+        //     // $scope.playerName = "testyTheMcTester";
+        //     // $scope.wins = 0;
+        //     // $scope.losses = 0;
+        //     // for(var i = 0; i < $scope.gameData.length; i++) {
+        //     //   if($scope.gameData[i].stats.win) {
+        //     //     $scope.wins++;
+        //     //   } else {
+        //     //     $scope.losses++;
+        //     //   }
+        //     // }
+        //   });
+        // });
+      $scope.leagueName = "";
+    }
   }]);
-
-
 
 // angular.module('BackpackFinderCtrl');
 // angular.module('BackPackFinder.login', [])
