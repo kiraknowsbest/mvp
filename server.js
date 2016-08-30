@@ -55,55 +55,126 @@ app.get('/', function(req, res) {
   console.log('received get at /');
 });
 
-// app.get('/login', function(req, res) {
-//   console.log('received get at /login');
-//   res.send('Reached /login');
-// });
+app.get('/login', function(req, res) {
+  console.log('received get at /login');
+  res.send('Reached /login');
+});
 
-// app.get('/signup', function(req, res) {
-//   console.log('received get at /signup');
-//   res.send('Reached /signup');
-// });
+app.get('/signup', function(req, res) {
+  console.log('received get at /signup');
+  res.send('Reached /signup');
+});
 
-// app.post('/signup', function(req, res) {
-//   console.log('received post at /signup');
-//   var user = {
-//     name: req.data.name,
-//     pass: req.data.pass
-//   };
-//   createUser(user);
-//   res.redirect('/show');
-// });
+app.post('/signup', function(req, res) {
+  console.log('received post at /signup');
+  var user = {
+    name: req.data.name,
+    pass: req.data.pass
+  };
+  createUser(user);
+  res.redirect('/show');
+});
 
-// app.get('/addun', function(req, res) {
-//   console.log('received get at /addun');
-//   res.send('Reached /addun');
-// });
+app.get('/addun', function(req, res) {
+  console.log('received get at /addun');
+  res.send('Reached /addun');
+});
 
-// app.post('/addun', function(req, res) {
-//   console.log('received post at /addun');
-//   res.send('Posted at /addun');
-// });
+app.post('/addun', function(req, res) {
+  console.log('received post at /addun');
+  res.send('Posted at /addun');
+});
 
-// app.delete('/addun', function(req, res) {
-//   console.log('received delete at /addun');
-//   res.send('Delete at /addun');
-// });
+app.delete('/addun', function(req, res) {
+  console.log('received delete at /addun');
+  res.send('Delete at /addun');
+});
 
-// app.get('/show', function(req, res) {
-//   User.findOne({name: req.data.name}, 'name list', function(err, result) {
-//     if (err) {
-//       return console.log('Error finding user in DB: ', err);
-//     } else {
-//       console.log('Results were delivered: ', result);
-//     }
-//   });
-//   console.log('received get at /show');
-//   res.send('Reached /show');
-// });
+
+
+var dummyData = [
+      {
+         "gameType": "MATCHED_GAME",
+         "stats": {
+            "win": true
+         }
+      },
+      {
+         "gameType": "MATCHED_GAME",
+         "stats": {
+            "win": true
+         }
+      },
+      {
+         "gameType": "MATCHED_GAME",
+         "stats": {
+            "win": false
+         }
+        
+      },
+      {
+         "gameType": "MATCHED_GAME",
+         "stats": {
+            "win": true
+         }
+      },
+      {
+         "gameType": "MATCHED_GAME",
+         "stats": {
+            "win": false
+         }
+      },
+      {
+         "gameType": "MATCHED_GAME",
+         "stats": {
+            "win": true
+         }
+      },
+      {
+         "gameType": "MATCHED_GAME",
+         "stats": {
+            "win": false
+         }
+      },
+      {
+         "gameType": "MATCHED_GAME",
+         "stats": {
+            "win": true
+         }
+      },
+      {
+         "gameType": "MATCHED_GAME",
+          "stats": {
+            "win": true
+          }
+      },
+      {
+         "gameType": "MATCHED_GAME",
+         "stats": {
+            "win": false
+         }
+      }
+   ];
+
+
+
+
+
+app.get('/show', function(req, res) {
+  res.json(dummyData);
+  console.log('I got the get request');
+  // User.findOne({name: req.data.name}, 'name list', function(err, result) {
+  //   if (err) {
+  //     return console.log('Error finding user in DB: ', err);
+  //   } else {
+  //     console.log('Results were delivered: ', result);
+  //   }
+  // });
+  // console.log('received get at /show');
+  // res.send('Reached /show');
+});
 
 app.listen(app.get('port'), function() {
   console.log('Server is alive and well... port is ' + app.get('port'));
 });
-
 
