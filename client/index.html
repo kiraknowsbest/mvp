@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-  <html ng-app="BackpackFinder">
+  <html ng-app="BackpackFinder" ng-controller="BackpackFinderCtrl">
     <head>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
       <title>Backpack-Finder v0.1</title>
     </head>
     <body>
-      <div class="container" ng-controller="BackPackFinderCtrl">
+      <div class="container" ng-view>
         <h2>League of Legends</h2>
         <h3>Backpack-Finder version 0.1</h3>
         <input class="leagueName" ng-model="leagueName" placeholder="Enter username here..."/>
@@ -29,6 +29,7 @@
           </tbody>
       </div>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+      <script src="./node_modules/angular-route/angular-route.min.js"></script>
       <script src="controller.js"></script>
     </body>
   </html>
