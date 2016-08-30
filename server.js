@@ -28,24 +28,44 @@ app.use(express.static('client'));
 
 // defining the user schema
 
-var users = mongoose.Schema({
-  name: String,
-  pass: String,
-  list: String
+// var users = mongoose.Schema({
+//   name: String,
+//   pass: String,
+//   list: String
+// });
+
+// // constructor for models in users
+// var User = mongoose.model('User', users);
+
+// var createUser = function(user) {
+//   var user = new User({
+//     name: user.name,
+//     pass: user.pass,
+//     list: ''
+//   });
+//   user.save(function(err, user) {
+//     if (err) {
+//       return console.log('Error creating user: ', err);
+//     }
+//   });
+// };
+
+// defining friendsList schema
+var trackedFriends = mongoose.Schema({
+  friends: String
 });
 
-// constructor for models in users
-var User = mongoose.model('User', users);
+// constructor for models in trackedFriends
+var TrackedFriend = mongoose.model('TrackedFriend', trackedFriends);
 
-var createUser = function(user) {
-  var user = new User({
-    name: user.name,
-    pass: user.pass,
-    list: ''
+var createFriend = function(name) {
+  var friend = new TrackedFriend({
+    name: name
   });
-  user.save(function(err, user) {
-    if (err) {
-      return console.log('Error creating user: ', err);
+  friend.save(function(err, friend) {
+    if(err) {
+      console.log('Error adding friend: ', err);
+      return;
     }
   });
 };
@@ -101,6 +121,10 @@ app.post('/show', function(req, res) {
     } else {
       // removing spaces from username
       requestedName = requestedName.replace(/\s/g, '').toLowerCase();
+
+      // adds to db
+      createFriend(requestedName);
+      
       // parsing JSON response
       body = JSON.parse(body);
       var userId = body[requestedName].id;

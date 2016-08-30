@@ -1,26 +1,15 @@
-var BackpackFinder = angular.module('BackpackFinder', []);
+var BackpackFinder = angular.module('BackpackFinder', [
+  'BackpackFinderCtrl',
+  'ngRoute'
+]);
 
-// angular.module('BackpackFinder.utils', [])
-
-// .factory('Utils', function ($http) {
-//   return {
-//     lookUp: function (data) {
-//       return $http({
-//         method: 'POST',
-//         url: '/show',
-//         data: data
-//       })
-//       .then(function (response) {
-//         return response;
-//       });
-//     }
-//   };
-// })
 
 BackpackFinder.controller('BackPackFinderCtrl', [
+  '$routeProvider',
   '$scope',
   '$http',
-  function($scope, $http) {
+  'ngRoute',
+  function($routeProvider, $scope, $http) {
     $scope.searchData = function(name) {
       $scope.playerName = name;
       $http({
@@ -44,6 +33,31 @@ BackpackFinder.controller('BackPackFinderCtrl', [
       $scope.leagueName = "";
     }
   }]);
+
+
+BackpackFinder.config(function($routeProvider) {
+  $routeProvider
+    .when('/', {
+      templateUrl: 'index.html',
+      controller: 'BackpackFinderCtrl'
+    });
+});
+// angular.module('BackpackFinder.utils', [])
+
+// .factory('Utils', function ($http) {
+//   return {
+//     lookUp: function (data) {
+//       return $http({
+//         method: 'POST',
+//         url: '/show',
+//         data: data
+//       })
+//       .then(function (response) {
+//         return response;
+//       });
+//     }
+//   };
+// })
 
 // angular.module('BackpackFinderCtrl');
 // angular.module('BackPackFinder.login', [])
