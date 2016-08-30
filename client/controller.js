@@ -1,0 +1,1 @@
+var BackpackFinder = angular.module('BackpackFinder', []);
