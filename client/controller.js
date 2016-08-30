@@ -30,25 +30,17 @@ BackpackFinder.controller('BackPackFinderCtrl', [
       }).success(function(gameData) {
         console.log('gameData: ', gameData);
         $scope.gameData = gameData;
+        $scope.wins = 0;
+        $scope.losses = 0;
+        for(var i = 0; i < $scope.gameData.length; i++) {
+          if($scope.gameData[i]) {
+            $scope.wins++;
+          } else {
+            $scope.losses++;
+          }
+        }
 
       });
-
-        // $http.post('/show', name).success(function() {
-        //   $http.get('/show').success(function(gameData) {
-        //     // $scope.gameData = gameData;
-        //     console.log(gameData);
-        //     // $scope.playerName = "testyTheMcTester";
-        //     // $scope.wins = 0;
-        //     // $scope.losses = 0;
-        //     // for(var i = 0; i < $scope.gameData.length; i++) {
-        //     //   if($scope.gameData[i].stats.win) {
-        //     //     $scope.wins++;
-        //     //   } else {
-        //     //     $scope.losses++;
-        //     //   }
-        //     // }
-        //   });
-        // });
       $scope.leagueName = "";
     }
   }]);
