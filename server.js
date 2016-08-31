@@ -73,6 +73,53 @@ app.get('/', function(req, res) {
 });
 
 
+// requesting all data on users added
+
+
+
+// app.get('/show', function(req, res) {
+//   var names;
+//   TrackedFriend.find(function(err, data) {
+//     if (err) {
+//       console.log('Error getting names: ', err);
+//     } else {
+//       names = data;
+//       var results = [];
+//       for (var i = 0; i < names.length; i++) {
+//         request.get('https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/' + names[i].name + '?api_key=RGAPI-890114F9-577E-4F7B-9F95-C06BB656CB71', function(err, response, body) {
+//           if(err) {
+//             console.log('Error getting ID: ', err);
+//           } else {
+//             body = JSON.parse(body);
+//             var userId = body[names[i].name].id;
+//             request.get('https://na.api.pvp.net/api/lol/na/v1.3/game/by-summoner/' + userId + '/recent?api_key=RGAPI-890114F9-577E-4F7B-9F95-C06BB656CB71', function(err, response, body) {
+//               if(err) {
+//                 console.log('Error getting match history: ', err);
+//               } else {
+//                 // parsing JSON response
+//                 body = JSON.parse(body);
+
+//                 // pilfering results
+//                 var matches = body.games.map(function(game) {
+//                   return game.stats.win;
+//                 });
+//                 results.push({
+//                   name: names[i].name,
+//                   matches: matches
+//                 });
+
+//                 //sending results
+//                 res.send(results);
+//               }
+//             });
+//           }
+//         });
+//       }
+//     }
+//   });
+// });
+
+
 // adding friend to page
 
 app.post('/show', function(req, res) {
