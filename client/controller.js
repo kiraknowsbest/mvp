@@ -1,26 +1,16 @@
+// creating main Angular module
+
 var BackpackFinder = angular.module('BackpackFinder', []);
 
-// angular.module('BackpackFinder.utils', [])
 
-// .factory('Utils', function ($http) {
-//   return {
-//     lookUp: function (data) {
-//       return $http({
-//         method: 'POST',
-//         url: '/show',
-//         data: data
-//       })
-//       .then(function (response) {
-//         return response;
-//       });
-//     }
-//   };
-// })
+// defining Angular controller
 
 BackpackFinder.controller('BackPackFinderCtrl', [
   '$scope',
   '$http',
   function($scope, $http) {
+
+    // making request for player
     $scope.searchData = function(name) {
       $scope.playerName = name;
       $http({
@@ -28,10 +18,14 @@ BackpackFinder.controller('BackPackFinderCtrl', [
         url: '/show',
         params: {name: name}
       }).success(function(gameData) {
+
+        // viewing results
         console.log('gameData: ', gameData);
         $scope.gameData = gameData;
         $scope.wins = 0;
         $scope.losses = 0;
+
+        // incrementing wins and losses
         for(var i = 0; i < $scope.gameData.length; i++) {
           if($scope.gameData[i]) {
             $scope.wins++;
@@ -41,36 +35,23 @@ BackpackFinder.controller('BackPackFinderCtrl', [
         }
 
       });
+
+      // resetting input box
       $scope.leagueName = "";
+    },
+
+    // get all players in list
+    $scope.scourge = function() {
+      $http({
+        method: 'GET',
+        url: '/show'
+      }).success(function(names) {
+        console.log('names: ', names);
+      });
     }
+
+
+
+
+
   }]);
-
-// angular.module('BackpackFinderCtrl');
-// angular.module('BackPackFinder.login', [])
-
-// .controller('LoginController', function ($scope, Utils) {  
-//   $scope.user = {};
-//   user.name = $scope.user;
-//   user.pass = $scope.pass;
-//   console.log('got the username and pass:', $scope.user);
-
-//   Utils.login($scope.user)
-//   .then(function(result) {
-//     console.log(results);
-//   });
-// });
-
-
-
-// angular.module('BackpackFinder.utils', [])
-// .factory('Utils', function($http) {
-//   return {
-//     login: function(user) {
-//       return $http({
-//         method: 'POST',
-//         url: '/login',
-//         data: user
-//       });
-//     }
-//   }
-// });
